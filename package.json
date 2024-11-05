@@ -20,7 +20,6 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@lit/react": "^1.0.6",
     "@remcovaes/web-test-runner-vite-plugin": "^1.2.1",
     "globby": "^14.0.2",
     "lit": "^3.2.0"

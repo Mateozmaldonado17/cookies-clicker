@@ -1,5 +1,3 @@
-import { DBLink } from "./components"
+import { DBLink } from './components';
 
-export {
-    DBLink
-}
+export { DBLink };
