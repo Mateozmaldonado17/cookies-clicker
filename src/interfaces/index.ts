@@ -1,3 +1,4 @@
-import IDBLink from './db-link.interface';
+import IAccount from './account.interface';
+import IFactory from './factory.interface';
 
-export type { IDBLink };
+export type { IAccount, IFactory };
