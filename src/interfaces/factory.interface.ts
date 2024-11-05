@@ -1,8 +1,9 @@
-interface IAccount {
+interface IFactory {
   id: number;
-  username: string;
-  cookies: number;
-  is_active: number;
+  name: string;
+  cookies_revenue: number;
+  price: number;
+  max_level: number;
 }
 
-export default IAccount;
+export default IFactory;
