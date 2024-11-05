@@ -1,0 +1,7 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "files": ["src/**/*.json", "src/**/*.ts", "src/**/*.js"],
+  "words": ["docbrok", "csspart"],
+  "ignorePaths": ["package.json", "src/stories/**"]
+}

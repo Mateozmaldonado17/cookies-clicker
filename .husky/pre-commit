@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm run lint
+npm run lint:spell
+npm run test
+npm run format
+npx prettier --write .
