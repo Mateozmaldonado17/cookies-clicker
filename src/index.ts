@@ -32,6 +32,10 @@ export class AppMain extends LitElement {
     return await this.db.activateAccountByUsername(username);
   }
 
+  private async handleClick() {
+    await this.db.addNewCookieToSelectedAccount();
+  }
+
   render() {
     return html`
       <create-user></create-user>
@@ -40,7 +44,7 @@ export class AppMain extends LitElement {
         .selectNewAccount=${(username: string) =>
           this.selectNewAccount(username)}
       ></list-users>
-      <cookie-clicker></cookie-clicker>
+      <cookie-clicker .handleClick=${() => this.handleClick()}></cookie-clicker>
     `;
   }
 

@@ -19,6 +19,19 @@ class AccountService extends Dexie {
     return await this.accounts.toArray();
   }
 
+  async getSelectedAccount(): Promise<IAccount | undefined> {
+    return await this.accounts.filter((account) => account.is_active).first();
+  }
+
+  async addNewCookieToSelectedAccount(): Promise<void> {
+    const selectedAccount = await this.getSelectedAccount();
+    if (selectedAccount) {
+      const id = selectedAccount.id;
+      const cookies = selectedAccount.cookies + 1;
+      await this.accounts.update(id, { cookies });
+    }
+  }
+
   public async activateAccountByUsername(username: string) {
     const accounts = await this.getAllAccounts();
 

@@ -1,5 +1,5 @@
 import { CSSResultGroup, LitElement, html } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import CookieClickerStyle from './cookie-clicker.style';
 import cookie from '../../assets/cookie.png';
 
@@ -13,8 +13,11 @@ import cookie from '../../assets/cookie.png';
 export default class CookieClicker extends LitElement {
   static styles: CSSResultGroup = [CookieClickerStyle];
 
+  @property({ attribute: false })
+  handleClick!: Function;
+
   render() {
-    return html`<div class="cookie-clicker">
+    return html`<div @click=${this.handleClick} class="cookie-clicker">
       <img draggable="false" src=${cookie} />
     </div>`;
   }
