@@ -76,6 +76,7 @@ class AccountService extends Dexie {
   }
 
   async addSelectedFactoryToCurrentAccount(factory: IFactory): Promise<void> {
+    const currentDate = new Date();
     const selectedAccount = await this.getSelectedAccount();
     if (selectedAccount) {
       const currentCookies = selectedAccount?.cookies;
@@ -88,7 +89,7 @@ class AccountService extends Dexie {
         {
           ...factory,
           id: selectedAccount.factories.length + 1,
-          update_at: new Date(),
+          update_at: currentDate.getTime(),
           level: 1,
         },
       ];

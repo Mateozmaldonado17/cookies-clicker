@@ -19,19 +19,19 @@ export default class ListFactories extends LitElement {
       id: 1,
       name: 'Clicker',
       image: '/cursor.webp',
-      cookies_revenue: 10,
+      cookies_revenue: 1,
       max_level: 3,
-      minutes: 1,
-      price: 250,
+      milliseconds: 100,
+      price: 100,
     },
     {
       id: 1,
-      name: 'Beauty Grandma',
+      name: 'Grandma',
       image: '/grandma.jpg',
-      cookies_revenue: 35,
+      cookies_revenue: 2,
       max_level: 3,
-      minutes: 2,
-      price: 600,
+      milliseconds: 100,
+      price: 250,
     },
   ];
 
@@ -45,8 +45,8 @@ export default class ListFactories extends LitElement {
             <div>
               <img src=${factory.image} width="100" height="100" />
               <span
-                >${factory.name} | Cookie Revenue Each ${factory.minutes}
-                minutes: ${factory.cookies_revenue}</span
+                >${factory.name} | Cookie Revenue Each ${factory.milliseconds}
+                milliseconds: ${factory.cookies_revenue}</span
               >
               <button @click=${() => this.onBuyFactory(factory)}>Buy</button>
             </div>

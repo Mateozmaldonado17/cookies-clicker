@@ -2,6 +2,7 @@ import { LitElement, css, html } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { AccountService } from './services';
 import { IAccount, IFactory } from './interfaces';
+import { IAccountFactories } from './interfaces/account.interface';
 import './components';
 
 /**
@@ -13,6 +14,7 @@ import './components';
 @customElement('app-main')
 export class AppMain extends LitElement {
   private db: AccountService = new AccountService();
+  private intervalId?: number;
 
   @state()
   accounts!: IAccount[];
@@ -39,6 +41,38 @@ export class AppMain extends LitElement {
   private async onBuyFactory(factory: IFactory) {
     this.db.addSelectedFactoryToCurrentAccount(factory);
   }
+
+  private async calculateNewCookies() {
+    const currentDate = new Date().getTime();
+    const getAllAccounts = await this.db.getAllAccounts();
+  
+    for (const account of getAllAccounts) {
+      account.factories.forEach((factory: IAccountFactories) => {
+        const revenue = factory.cookies_revenue * factory.level;
+        const differenceInMilliseconds = currentDate - factory.update_at;
+        const interval = Math.floor(differenceInMilliseconds / 100);
+        const cookiesEarned = revenue * interval;
+        account.cookies += cookiesEarned;
+        factory.update_at = currentDate;
+      });
+      await this.db.accounts.put(account);
+    }
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.intervalId = window.setInterval(() => {
+      this.calculateNewCookies();
+    }, 100);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    if (this.intervalId !== undefined) {
+      clearInterval(this.intervalId);
+      this.intervalId = undefined;
+    }
+  } 
 
   render() {
     return html`
