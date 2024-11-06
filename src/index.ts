@@ -40,6 +40,7 @@ export class AppMain extends LitElement {
         .selectNewAccount=${(username: string) =>
           this.selectNewAccount(username)}
       ></list-users>
+      <cookie-clicker></cookie-clicker>
     `;
   }
 
