@@ -1,6 +1,7 @@
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { AccountService } from './services';
+import './components';
 
 /**
  * An example element.
@@ -23,7 +24,7 @@ export class AppMain extends LitElement {
   }
 
   render() {
-    return html` <slot></slot> `;
+    return html` <create-user></create-user>`;
   }
 
   static styles = css`

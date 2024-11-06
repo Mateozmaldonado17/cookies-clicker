@@ -25,8 +25,9 @@ class AccountService extends Dexie {
     attributes: Pick<IAccount, 'username'>,
   ): Promise<IAccount | never> {
     const { username } = attributes;
-    const getUser = await this.getAccountByUsername(username);
-    if (getUser) throw new Error(`${username} already exists`);
+    if (!username) throw new Error(`username should not be empty`);
+    const userExist = await this.getAccountByUsername(username);
+    if (userExist) throw new Error(`${username} already exists`);
     return await this.accounts.add({
       username,
       cookies: 0,
