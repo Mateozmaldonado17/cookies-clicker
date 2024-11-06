@@ -1,7 +1,8 @@
 import { LitElement, css, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, state } from 'lit/decorators.js';
 import { AccountService } from './services';
 import './components';
+import { IAccount } from './interfaces';
 
 /**
  * An example element.
@@ -11,20 +12,27 @@ import './components';
  */
 @customElement('app-main')
 export class AppMain extends LitElement {
-  @property()
-  docsHint = 'Click on the Vite and Lit logos to learn more';
+  private db: AccountService = new AccountService();
+
+  @state()
+  accounts!: IAccount[];
 
   async detectIfThereIsNotAccounts() {
-    const accountService = new AccountService();
-    return await accountService.getAllAccounts();
+    return await this.db.getAllAccounts();
   }
 
   protected firstUpdated(): void {
+    this.db.watchAccounts().subscribe((data) => {
+      this.accounts = data;
+    });
     this.detectIfThereIsNotAccounts();
   }
 
   render() {
-    return html` <create-user></create-user>`;
+    return html`
+      <create-user></create-user>
+      <list-users .accounts=${this.accounts}></list-users>
+    `;
   }
 
   static styles = css`

@@ -1,5 +1,7 @@
 import Dexie, { Table } from 'dexie';
 import { IAccount } from '../interfaces';
+import 'dexie-observable';
+import { Observable } from 'rxjs';
 
 const versionDb = 1;
 
@@ -13,7 +15,7 @@ class AccountService extends Dexie {
     });
   }
 
-  async getAllAccounts() {
+  async getAllAccounts(): Promise<IAccount[]> {
     return await this.accounts.toArray();
   }
 
@@ -33,6 +35,18 @@ class AccountService extends Dexie {
       cookies: 0,
       is_active: false,
       factories: [],
+    });
+  }
+
+  public watchAccounts(): Observable<IAccount[]> {
+    return new Observable((observer) => {
+      const emitAccounts = async () => {
+        const accounts = await this.getAllAccounts();
+        observer.next(accounts);
+      };
+      emitAccounts();
+      this.on('changes', emitAccounts);
+      return () => this.on('changes').unsubscribe(emitAccounts);
     });
   }
 }

@@ -5,16 +5,12 @@ export default css`
     display: contents;
     user-select: none;
     margin: 0;
+    color: white;
   }
 
-  .db-link {
+  .create-user {
     display: flex;
-    cursor: pointer;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    width: 113px;
-    height: 35px;
-    border-radius: 25px;
-    background-color: #f5f5f5;
   }
 `;
