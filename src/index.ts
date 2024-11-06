@@ -45,7 +45,7 @@ export class AppMain extends LitElement {
   private async calculateNewCookies() {
     const currentDate = new Date().getTime();
     const getAllAccounts = await this.db.getAllAccounts();
-  
+
     for (const account of getAllAccounts) {
       account.factories.forEach((factory: IAccountFactories) => {
         const revenue = factory.cookies_revenue * factory.level;
@@ -72,7 +72,7 @@ export class AppMain extends LitElement {
       clearInterval(this.intervalId);
       this.intervalId = undefined;
     }
-  } 
+  }
 
   render() {
     return html`

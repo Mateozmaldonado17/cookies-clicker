@@ -22,7 +22,9 @@ export default class CreateUser extends LitElement {
   render() {
     return html`<div class="list-users">
       ${this.accounts?.map((account: IAccount) => {
-        const formattedCookies = new Intl.NumberFormat('en', { notation: 'compact' }).format(account.cookies);
+        const formattedCookies = new Intl.NumberFormat('en', {
+          notation: 'compact',
+        }).format(account.cookies);
         return html`
           <div
             >${account.username} ${formattedCookies}
