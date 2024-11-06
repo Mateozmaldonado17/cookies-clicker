@@ -1,8 +1,8 @@
 import { LitElement, css, html } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { AccountService } from './services';
-import './components';
 import { IAccount } from './interfaces';
+import './components';
 
 /**
  * An example element.
@@ -45,6 +45,7 @@ export class AppMain extends LitElement {
           this.selectNewAccount(username)}
       ></list-users>
       <cookie-clicker .handleClick=${() => this.handleClick()}></cookie-clicker>
+      <list-factories></list-factories>
     `;
   }
 
