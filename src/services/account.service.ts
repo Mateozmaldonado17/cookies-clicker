@@ -1,5 +1,5 @@
 import Dexie, { Table } from 'dexie';
-import { IAccount } from '../interfaces';
+import { IAccount, IFactory } from '../interfaces';
 import 'dexie-observable';
 import { Observable } from 'rxjs';
 
@@ -73,6 +73,30 @@ class AccountService extends Dexie {
       is_active: false,
       factories: [],
     });
+  }
+
+  async addSelectedFactoryToCurrentAccount(factory: IFactory): Promise<void> {
+    const selectedAccount = await this.getSelectedAccount();
+    if (selectedAccount) {
+      const currentCookies = selectedAccount?.cookies;
+      const factoryCost = factory.price;
+      if (currentCookies < factoryCost)
+        throw new Error("you don't have cookies enough");
+      const id = selectedAccount.id;
+      const newFactories = [
+        ...selectedAccount.factories,
+        {
+          ...factory,
+          id: selectedAccount.factories.length + 1,
+          update_at: new Date(),
+          level: 1,
+        },
+      ];
+      await this.accounts.update(id, {
+        factories: newFactories,
+        cookies: currentCookies - factoryCost,
+      });
+    }
   }
 
   public watchAccounts(): Observable<IAccount[]> {

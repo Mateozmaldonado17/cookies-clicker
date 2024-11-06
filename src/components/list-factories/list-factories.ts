@@ -1,5 +1,5 @@
 import { CSSResultGroup, LitElement, html } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import ListFactoriesStyle from './list-factories.style';
 import { IFactory } from '../../interfaces';
 
@@ -11,6 +11,9 @@ import { IFactory } from '../../interfaces';
  */
 @customElement('list-factories')
 export default class ListFactories extends LitElement {
+  @property({ attribute: false })
+  onBuyFactory!: Function;
+
   private factories: IFactory[] = [
     {
       id: 1,
@@ -45,7 +48,7 @@ export default class ListFactories extends LitElement {
                 >${factory.name} | Cookie Revenue Each ${factory.minutes}
                 minutes: ${factory.cookies_revenue}</span
               >
-              <button>Buy</button>
+              <button @click=${() => this.onBuyFactory(factory)}>Buy</button>
             </div>
           `;
         })}

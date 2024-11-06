@@ -1,7 +1,7 @@
 import { LitElement, css, html } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { AccountService } from './services';
-import { IAccount } from './interfaces';
+import { IAccount, IFactory } from './interfaces';
 import './components';
 
 /**
@@ -36,6 +36,10 @@ export class AppMain extends LitElement {
     await this.db.addNewCookieToSelectedAccount();
   }
 
+  private async onBuyFactory(factory: IFactory) {
+    this.db.addSelectedFactoryToCurrentAccount(factory);
+  }
+
   render() {
     return html`
       <create-user></create-user>
@@ -45,7 +49,9 @@ export class AppMain extends LitElement {
           this.selectNewAccount(username)}
       ></list-users>
       <cookie-clicker .handleClick=${() => this.handleClick()}></cookie-clicker>
-      <list-factories></list-factories>
+      <list-factories
+        .onBuyFactory=${(factory: IFactory) => this.onBuyFactory(factory)}
+      ></list-factories>
     `;
   }
 
