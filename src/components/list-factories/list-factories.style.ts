@@ -7,4 +7,9 @@ export default css`
     margin: 0;
     color: white;
   }
+
+  .list-factories {
+    display: flex;
+    flex-direction: column;
+  }
 `;
