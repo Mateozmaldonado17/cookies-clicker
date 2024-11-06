@@ -19,6 +19,30 @@ class AccountService extends Dexie {
     return await this.accounts.toArray();
   }
 
+  public async activateAccountByUsername(username: string) {
+    const accounts = await this.getAllAccounts();
+
+    const updatedAccounts = accounts
+      .map((account: IAccount) => {
+        const isAccountToActivate = account.username === username;
+        const shouldDeactivate = account.is_active && !isAccountToActivate;
+
+        if (shouldDeactivate) {
+          return { ...account, is_active: false };
+        }
+
+        if (isAccountToActivate && !account.is_active) {
+          return { ...account, is_active: true };
+        }
+
+        return null;
+      })
+      .filter((account) => account !== null) as IAccount[];
+
+    await Promise.all(
+      updatedAccounts.map((account) => this.accounts.put(account)),
+    );
+  }
   async getAccountByUsername(username: string): Promise<IAccount | undefined> {
     return await this.accounts.where('username').equals(username).first();
   }

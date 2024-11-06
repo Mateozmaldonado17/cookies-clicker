@@ -16,10 +16,23 @@ export default class CreateUser extends LitElement {
   @property({ type: Array })
   accounts!: IAccount[];
 
+  @property({ attribute: false })
+  selectNewAccount!: Function;
+
   render() {
     return html`<div class="list-users">
       ${this.accounts?.map((account: IAccount) => {
-        return html` <div>${account.username} $${account.cookies}</div> `;
+        return html`
+          <div
+            >${account.username} ${account.cookies}
+            ${account.is_active
+              ? 'Selected'
+              : html`<button
+                  @click=${() => this.selectNewAccount(account.username)}
+                  >Select</button
+                >`}</div
+          >
+        `;
       })}
     </div>`;
   }

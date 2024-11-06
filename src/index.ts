@@ -28,10 +28,18 @@ export class AppMain extends LitElement {
     this.detectIfThereIsNotAccounts();
   }
 
+  private async selectNewAccount(username: string) {
+    return await this.db.activateAccountByUsername(username);
+  }
+
   render() {
     return html`
       <create-user></create-user>
-      <list-users .accounts=${this.accounts}></list-users>
+      <list-users
+        .accounts=${this.accounts}
+        .selectNewAccount=${(username: string) =>
+          this.selectNewAccount(username)}
+      ></list-users>
     `;
   }
 
