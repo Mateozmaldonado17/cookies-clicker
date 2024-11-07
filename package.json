@@ -1,11 +1,8 @@
 {
-  "name": "docbrok-ui",
+  "name": "cookies-clicker",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "dist/docbrok-ui.cjs",
-  "module": "dist/docbrok-ui.es.js",
-  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -15,22 +12,27 @@
     "lint:fix": "eslint \"src/**/*.{js,ts}\" \"test/**/*.{js,ts}\" --max-warnings 0 --fix",
     "lint:spell": "cspell \"**/*.json\" \"**/*.ts\" \"**/*.js\"",
     "format": "prettier --write .",
-    "test": "web-test-runner test/**/*.test.ts --node-resolve",
+    "test": "wtr src/**/*.test.ts --node-resolve --coverage --watchAll",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@open-wc/testing": "^4.0.0",
+    "@playwright/test": "^1.48.2",
     "@remcovaes/web-test-runner-vite-plugin": "^1.2.1",
+    "@web/dev-server-legacy": "^2.1.1",
     "dexie": "^4.0.9",
     "dexie-observable": "^4.0.1-beta.13",
     "globby": "^14.0.2",
     "lit": "^3.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "sinon": "^19.0.2"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.9.0",
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
+    "@esm-bundle/chai": "^4.3.4-fix.0",
     "@storybook/addon-essentials": "^8.3.6",
     "@storybook/addon-links": "^8.3.6",
     "@storybook/blocks": "^8.3.6",

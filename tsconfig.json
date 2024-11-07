@@ -1,20 +1,17 @@
 {
   "compilerOptions": {
-    "types": ["jest", "node"],
-    "target": "ES2020",
+    "target": "es2020",
+    "module": "esnext",
     "experimentalDecorators": true,
-    "useDefineForClassFields": false,
-    "module": "ESNext",
+    "useDefineForClassFields": false /* See https://lit.dev/docs/components/properties/#avoiding-issues-with-class-fields */,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
-    "outDir": "./dist",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
-    "esModuleInterop": true,
     "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
     "isolatedModules": true,
-    "moduleDetection": "force",
     "noEmit": true,
 
     /* Linting */
@@ -23,6 +20,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*.ts", "test/**/*.ts"],
-  "exclude": ["node_modules", "src/**/*.stories.ts"]
+  "include": ["src"]
 }

@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
  * @csspart button - The button
  */
 @customElement('app-main')
-export default class AppMain extends LitElement {
+class AppMain extends LitElement {
   private db: AccountService = new AccountService();
   private intervalId?: number;
   private factorySubscription?: Subscription;
@@ -184,9 +184,5 @@ export default class AppMain extends LitElement {
 
   static styles: CSSResultGroup = [MainStyle];
 }
-declare global {
-  // eslint-disable-next-line no-unused-vars
-  interface HTMLElementTagNameMap {
-    'app-main': AppMain;
-  }
-}
+
+export default AppMain;
