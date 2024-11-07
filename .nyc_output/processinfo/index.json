@@ -1,1 +1,78 @@
-{"processes":{"372c36b4-00bf-4a11-99b8-d0253eda3dfb":{"parent":null,"children":[]},"54443849-6cd3-4a8a-8fe7-36e04f9ed488":{"parent":null,"children":[]}},"files":{"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/commitlint.config.js":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/coverage/lcov-report/block-navigation.js":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/coverage/lcov-report/prettify.js":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/coverage/lcov-report/sorter.js":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/dist/assets/index-kbtMwKey.js":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/eslint.config.js":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/playwright.config.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/app-main.test.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/cookie-clicker/cookie-clicker.style.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/cookie-clicker/index.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/create-user/create-user.style.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/create-user/index.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/index.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/list-factories/index.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/list-factories/list-factories.style.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/list-users/index.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/list-users/list-users.style.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/main.style.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/services/index.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/stories/Button.stories.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/vite-env.d.ts":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/vite.config.js":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"],"/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/web-test-runner.config.js":["372c36b4-00bf-4a11-99b8-d0253eda3dfb"]},"externalIds":{}}
+{
+  "processes": {
+    "bf5c8a3e-ebc0-4d07-b662-5a76b2ed757e": { "parent": null, "children": [] },
+    "ce5bafeb-8710-43df-91ca-0c79826695ce": { "parent": null, "children": [] }
+  },
+  "files": {
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/commitlint.config.js": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/coverage/lcov-report/block-navigation.js": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/coverage/lcov-report/prettify.js": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/coverage/lcov-report/sorter.js": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/dist/assets/index-kbtMwKey.js": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/eslint.config.js": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/playwright.config.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/app-main.test.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/cookie-clicker/cookie-clicker.style.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/cookie-clicker/index.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/create-user/create-user.style.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/create-user/index.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/index.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/list-factories/index.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/list-factories/list-factories.style.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/list-users/index.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/components/list-users/list-users.style.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/main.style.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/services/index.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/stories/Button.stories.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/src/vite-env.d.ts": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/vite.config.js": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ],
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/web-test-runner.config.js": [
+      "ce5bafeb-8710-43df-91ca-0c79826695ce"
+    ]
+  },
+  "externalIds": {}
+}

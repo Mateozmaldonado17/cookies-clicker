@@ -1,0 +1,20 @@
+{
+  "parent": null,
+  "pid": 28839,
+  "argv": [
+    "/Users/mateozapatamaldonado/.nvm/versions/node/v18.18.0/bin/node",
+    "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/node_modules/.bin/wtr",
+    "src/services/account.service.test.ts",
+    "--node-resolve",
+    "--coverage",
+    "--watchAll"
+  ],
+  "execArgv": [],
+  "cwd": "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker",
+  "time": 1730986778316,
+  "ppid": 28822,
+  "coverageFilename": "/Users/mateozapatamaldonado/PersonalProjects/cookies-clicker/.nyc_output/bf5c8a3e-ebc0-4d07-b662-5a76b2ed757e.json",
+  "externalId": "",
+  "uuid": "bf5c8a3e-ebc0-4d07-b662-5a76b2ed757e",
+  "files": []
+}

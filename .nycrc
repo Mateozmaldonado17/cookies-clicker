@@ -1,6 +1,4 @@
 {
-    "all": true,
-    "exclude": [
-      "node_modules"
-    ]
-  }
+  "all": true,
+  "exclude": ["node_modules"]
+}
