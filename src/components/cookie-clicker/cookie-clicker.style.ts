@@ -24,10 +24,13 @@ export default css`
     display: grid;
     place-content: center;
     user-select: none;
+  }
+
+  .cookie-clicker-img {
     cursor: pointer;
   }
 
-  .cookie-clicker:active {
+  .cookie-clicker-img:active {
     animation: clickBounce 0.1s ease;
   }
 `;

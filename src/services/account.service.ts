@@ -1,7 +1,8 @@
 import Dexie, { Table } from 'dexie';
 import { IAccount, IFactory } from '../interfaces';
 import 'dexie-observable';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { IAccountFactories } from '../interfaces/account.interface';
 
 const versionDb = 1;
 
@@ -21,6 +22,33 @@ class AccountService extends Dexie {
 
   async getSelectedAccount(): Promise<IAccount | undefined> {
     return await this.accounts.filter((account) => account.is_active).first();
+  }
+
+  // async getFactoriesByNameDesc(name: string): Promise<IAccountFactories[]> {
+  //   const selectedAccount = await this.getSelectedAccount();
+    
+  //   if (!selectedAccount) {
+  //     throw new Error("No active account found");
+  //   }
+
+  //   return selectedAccount.factories
+  //     .filter(factory => factory.name === name)
+  //     .sort((a, b) => b.id - a.id);
+  // }
+
+  public watchFactoriesByName(name: string): Observable<IAccountFactories[]> {
+    return this.watchAccounts().pipe(
+      map((accounts) => {
+        const selectedAccount = accounts.find((account) => account.is_active);
+  
+        if (!selectedAccount) {
+          throw new Error("No active account found");
+        }
+        return selectedAccount.factories
+          .filter((factory) => factory.name === name)
+          .sort((a, b) => b.id - a.id);
+      })
+    );
   }
 
   async addNewCookieToSelectedAccount(): Promise<void> {

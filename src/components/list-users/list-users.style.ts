@@ -8,9 +8,10 @@ export default css`
     color: white;
   }
 
-  .create-user {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .list-users select {
+    font-size: 16px;
+    padding: 8px;
+    width: 172px;
   }
+  
 `;

@@ -1,9 +1,11 @@
-import { LitElement, css, html } from 'lit';
+import { CSSResultGroup, LitElement, html } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { AccountService } from './services';
 import { IAccount, IFactory } from './interfaces';
 import { IAccountFactories } from './interfaces/account.interface';
+import MainStyle from './main.style';
 import './components';
+import { Subscription } from 'rxjs';
 
 /**
  * An example element.
@@ -15,9 +17,40 @@ import './components';
 export class AppMain extends LitElement {
   private db: AccountService = new AccountService();
   private intervalId?: number;
+  private factorySubscription?: Subscription;
+
+  @state()
+  allFactoriesByAccount!: IAccountFactories[];
+
+  @state()
+  currentFactory!: IFactory;
+
+  @state()
+  showListFactories: boolean = true;
 
   @state()
   accounts!: IAccount[];
+
+  async setShowListFactories(factory: IFactory | null, openModal = false) {
+    this.currentFactory = factory as IFactory;
+    this.showListFactories = openModal;
+    this.factorySubscription?.unsubscribe();
+    if (factory) {
+      this.factorySubscription = this.db
+        .watchFactoriesByName(factory.name)
+        .subscribe({
+          next: (factories: IAccountFactories[]) => {
+            if (
+              JSON.stringify(this.allFactoriesByAccount) !==
+              JSON.stringify(factories)
+            ) {
+              this.allFactoriesByAccount = factories;
+            }
+          },
+          error: (err) => console.error(err),
+        });
+    }
+  }
 
   async detectIfThereIsNotAccounts() {
     return await this.db.getAllAccounts();
@@ -28,18 +61,30 @@ export class AppMain extends LitElement {
       this.accounts = data;
     });
     this.detectIfThereIsNotAccounts();
+    this.getSelectedAccount();
   }
 
-  private async selectNewAccount(username: string) {
+  private async getSelectedAccount(): Promise<string | undefined> {
+    const account = await this.db.getSelectedAccount();
+    return account?.username;
+  }
+
+  private async activateAccount(username: string) {
     return await this.db.activateAccountByUsername(username);
   }
 
-  private async handleClick() {
+  private async selectNewAccount(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const username = selectElement.value;
+    return await this.activateAccount(username);
+  }
+
+  private async handleClick(): Promise<void> {
     await this.db.addNewCookieToSelectedAccount();
   }
 
-  private async onBuyFactory(factory: IFactory) {
-    this.db.addSelectedFactoryToCurrentAccount(factory);
+  private async onBuyFactory(): Promise<void> {
+    this.db.addSelectedFactoryToCurrentAccount(this.currentFactory);
   }
 
   private async calculateNewCookies() {
@@ -76,27 +121,55 @@ export class AppMain extends LitElement {
 
   render() {
     return html`
+      ${this.showListFactories &&
+      this.currentFactory &&
+      html`
+        <div class="list-factory-modal">
+          <div class="list-factory-modal-header">
+            <h2>${this.currentFactory.name}</h2>
+            <div
+              >Cookies Revenue: ${this.currentFactory.cookies_revenue} | Max
+              Level: ${this.currentFactory.max_level}</div
+            >
+            <div class="buttons">
+              <button @click=${this.onBuyFactory}>Buy</button>
+              <button @click=${() => this.setShowListFactories(null, false)}
+                >Close</button
+              >
+            </div>
+
+            ${this.allFactoriesByAccount.map((factory: IAccountFactories) => {
+              return html`
+                <div>
+                  <hr />
+                  <b
+                    >${factory.name} #${factory.id} Level
+                    ${factory.level}/${factory.max_level}</b
+                  >
+                  <h3>Up Level</h3>
+                </div>
+              `;
+            })}
+          </div>
+        </div>
+      `}
       <create-user></create-user>
       <list-users
         .accounts=${this.accounts}
-        .selectNewAccount=${(username: string) =>
-          this.selectNewAccount(username)}
+        .selectNewAccount=${(event: Event) => this.selectNewAccount(event)}
+        .selectedUsername=${() => this.getSelectedAccount()}
       ></list-users>
       <cookie-clicker .handleClick=${() => this.handleClick()}></cookie-clicker>
-      <list-factories
-        .onBuyFactory=${(factory: IFactory) => this.onBuyFactory(factory)}
-      ></list-factories>
+      <div class="factories-bottom">
+        <list-factories
+          .setShowListFactories=${(factory: IFactory) =>
+            this.setShowListFactories(factory, true)}
+        ></list-factories>
+      </div>
     `;
   }
 
-  static styles = css`
-    :host {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 2rem;
-      text-align: center;
-    }
-  `;
+  static styles: CSSResultGroup = [MainStyle];
 }
 
 declare global {

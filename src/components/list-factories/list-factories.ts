@@ -2,6 +2,7 @@ import { CSSResultGroup, LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import ListFactoriesStyle from './list-factories.style';
 import { IFactory } from '../../interfaces';
+import { styleMap } from 'lit/directives/style-map.js';
 
 /**
  * An example element.
@@ -11,8 +12,9 @@ import { IFactory } from '../../interfaces';
  */
 @customElement('list-factories')
 export default class ListFactories extends LitElement {
+
   @property({ attribute: false })
-  onBuyFactory!: Function;
+  setShowListFactories!: Function;
 
   private factories: IFactory[] = [
     {
@@ -25,13 +27,31 @@ export default class ListFactories extends LitElement {
       price: 100,
     },
     {
-      id: 1,
+      id: 2,
       name: 'Grandma',
       image: '/grandma.jpg',
       cookies_revenue: 2,
       max_level: 3,
       milliseconds: 100,
       price: 250,
+    },
+    {
+      id: 3,
+      name: 'Trump',
+      image: '/trump.jpg',
+      cookies_revenue: 3,
+      max_level: 3,
+      milliseconds: 100,
+      price: 450,
+    },
+    {
+      id: 4,
+      name: 'Kamala',
+      image: '/kamala.png',
+      cookies_revenue: 2,
+      max_level: 3,
+      milliseconds: 100,
+      price: 350,
     },
   ];
 
@@ -42,13 +62,11 @@ export default class ListFactories extends LitElement {
       <div class="list-factories">
         ${this.factories.map((factory) => {
           return html`
-            <div>
-              <img src=${factory.image} width="100" height="100" />
-              <span
-                >${factory.name} | Cookie Revenue Each ${factory.milliseconds}
-                milliseconds: ${factory.cookies_revenue}</span
-              >
-              <button @click=${() => this.onBuyFactory(factory)}>Buy</button>
+            <div class="item" @click=${() => this.setShowListFactories(factory)}>
+              <div class="factory-img" style=${styleMap({
+                "background-image": `url(${factory.image})`,
+              })}></div>
+              <span>${factory.name}</span>
             </div>
           `;
         })}

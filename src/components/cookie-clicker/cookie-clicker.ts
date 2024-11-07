@@ -17,8 +17,8 @@ export default class CookieClicker extends LitElement {
   handleClick!: Function;
 
   render() {
-    return html`<div @click=${this.handleClick} class="cookie-clicker">
-      <img draggable="false" src=${cookie} />
+    return html`<div class="cookie-clicker">
+      <img class="cookie-clicker-img" @click=${this.handleClick} draggable="false" src=${cookie} width="250" height="250" />
     </div>`;
   }
 }

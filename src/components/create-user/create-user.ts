@@ -15,9 +15,6 @@ export default class CreateUser extends LitElement {
   static styles: CSSResultGroup = [CreateUserStyle];
 
   @state()
-  error!: string;
-
-  @state()
   username!: string;
 
   @state()
@@ -35,23 +32,17 @@ export default class CreateUser extends LitElement {
         username: this.username,
       });
       this.account = getCreatedUser;
-      this.error = '';
+      this.username = "";
     } catch (error: any) {
       this.account = null;
-      this.error = error.message;
+      alert(error.message)
     }
   }
 
   render() {
     return html`<div class="create-user">
-      ${this.error?.length ? this.error : ''}
-      ${this.account
-        ? html`<div>User has been created successful</div>`
-        : html` <input
-              @input=${this.onChangeUsername}
-              placeholder="Username here"
-            />
-            <button @click=${this.onCreateNewAccount}>Create new user</button>`}
+      <input @input=${this.onChangeUsername} placeholder="Username here" />
+      <button @click=${this.onCreateNewAccount}>Create new user</button>
     </div>`;
   }
 }
