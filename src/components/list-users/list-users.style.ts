@@ -13,5 +13,4 @@ export default css`
     padding: 8px;
     width: 172px;
   }
-  
 `;

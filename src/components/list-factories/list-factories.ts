@@ -12,7 +12,6 @@ import { styleMap } from 'lit/directives/style-map.js';
  */
 @customElement('list-factories')
 export default class ListFactories extends LitElement {
-
   @property({ attribute: false })
   setShowListFactories!: Function;
 
@@ -62,10 +61,16 @@ export default class ListFactories extends LitElement {
       <div class="list-factories">
         ${this.factories.map((factory) => {
           return html`
-            <div class="item" @click=${() => this.setShowListFactories(factory)}>
-              <div class="factory-img" style=${styleMap({
-                "background-image": `url(${factory.image})`,
-              })}></div>
+            <div
+              class="item"
+              @click=${() => this.setShowListFactories(factory)}
+            >
+              <div
+                class="factory-img"
+                style=${styleMap({
+                  'background-image': `url(${factory.image})`,
+                })}
+              ></div>
               <span>${factory.name}</span>
             </div>
           `;

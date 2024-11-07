@@ -35,7 +35,7 @@ export default css`
     flex-direction: column;
     align-content: center;
   }
-  
+
   .factory-img {
     background-size: cover;
     background-position: center;

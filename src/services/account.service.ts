@@ -24,30 +24,43 @@ class AccountService extends Dexie {
     return await this.accounts.filter((account) => account.is_active).first();
   }
 
-  // async getFactoriesByNameDesc(name: string): Promise<IAccountFactories[]> {
-  //   const selectedAccount = await this.getSelectedAccount();
-    
-  //   if (!selectedAccount) {
-  //     throw new Error("No active account found");
-  //   }
-
-  //   return selectedAccount.factories
-  //     .filter(factory => factory.name === name)
-  //     .sort((a, b) => b.id - a.id);
-  // }
+  async upgradeFactoryLevel(factoryId: number): Promise<void> {
+    const selectedAccount = await this.getSelectedAccount();
+    if (!selectedAccount) {
+      throw new Error("No active account found");
+    }
+    const factory = selectedAccount.factories.find(f => f.id === factoryId);
+    if (!factory) {
+      throw new Error(`Factory with ID ${factoryId} not found in the selected account.`);
+    }
+    if (factory.level >= factory.max_level) {
+      throw new Error("Factory has already reached its maximum level.");
+    }
+    const upgradeCost = factory.price * factory.level;
+    if (selectedAccount.cookies < upgradeCost) {
+      throw new Error("Not enough cookies to upgrade the factory level.");
+    }
+    factory.level += 1;
+    selectedAccount.cookies -= upgradeCost;
+    factory.update_at = new Date().getTime();
+    await this.accounts.update(selectedAccount.id, {
+      factories: selectedAccount.factories,
+      cookies: selectedAccount.cookies,
+    });
+  }
 
   public watchFactoriesByName(name: string): Observable<IAccountFactories[]> {
     return this.watchAccounts().pipe(
       map((accounts) => {
         const selectedAccount = accounts.find((account) => account.is_active);
-  
+
         if (!selectedAccount) {
-          throw new Error("No active account found");
+          throw new Error('No active account found');
         }
         return selectedAccount.factories
           .filter((factory) => factory.name === name)
           .sort((a, b) => b.id - a.id);
-      })
+      }),
     );
   }
 

@@ -47,4 +47,9 @@ export default css`
       }
     }
   }
+
+  .list-factory-modal-content {
+    max-height: 400px;
+    overflow: scroll;
+  }
 `;

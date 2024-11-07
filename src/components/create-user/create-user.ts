@@ -32,10 +32,10 @@ export default class CreateUser extends LitElement {
         username: this.username,
       });
       this.account = getCreatedUser;
-      this.username = "";
+      this.username = '';
     } catch (error: any) {
       this.account = null;
-      alert(error.message)
+      alert(error.message);
     }
   }
 

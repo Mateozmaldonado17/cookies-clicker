@@ -36,7 +36,9 @@ export default class CreateUser extends LitElement {
           const formattedCookies = new Intl.NumberFormat('en', {
             notation: 'compact',
           }).format(account.cookies);
-          return html`<option ?selected=${account.username === this.resolvedUsername} value=${account.username}
+          return html`<option
+            ?selected=${account.username === this.resolvedUsername}
+            value=${account.username}
             >${account.username} ${formattedCookies} cookies</option
           >`;
         })}

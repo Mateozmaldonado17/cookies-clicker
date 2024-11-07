@@ -119,6 +119,14 @@ export class AppMain extends LitElement {
     }
   }
 
+  async upgradeFactoryLevel(factoryId: number) {
+    try {
+      await this.db.upgradeFactoryLevel(factoryId);
+    } catch (error) {
+      alert(error);
+    }
+  }
+
   render() {
     return html`
       ${this.showListFactories &&
@@ -137,19 +145,23 @@ export class AppMain extends LitElement {
                 >Close</button
               >
             </div>
-
-            ${this.allFactoriesByAccount.map((factory: IAccountFactories) => {
-              return html`
-                <div>
+            <div class="list-factory-modal-content">
+              ${this.allFactoriesByAccount.map((factory: IAccountFactories) => {
+                return html`
                   <hr />
                   <b
                     >${factory.name} #${factory.id} Level
                     ${factory.level}/${factory.max_level}</b
                   >
-                  <h3>Up Level</h3>
-                </div>
-              `;
-            })}
+                  ${factory.level < factory.max_level ?
+                  html` <button
+                    @click=${() => this.upgradeFactoryLevel(factory.id)}
+                  >
+                    Up Level
+                  </button>` : "Congratulations!"}
+                `;
+              })}
+            </div>
           </div>
         </div>
       `}
