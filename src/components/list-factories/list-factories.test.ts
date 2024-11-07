@@ -10,15 +10,19 @@ describe('ListFactories Component', () => {
   });
 
   it('should render the correct number of factory items', async () => {
-    const el = await fixture<ListFactories>(html`<list-factories></list-factories>`);
+    const el = await fixture<ListFactories>(
+      html`<list-factories></list-factories>`,
+    );
     const items = el.shadowRoot?.querySelectorAll('.item');
-    expect(items?.length).to.equal(4); 
+    expect(items?.length).to.equal(4);
   });
 
   it('should call setShowListFactories on item click', async () => {
     const setShowListFactories = sinon.spy();
     const el = await fixture<ListFactories>(
-      html`<list-factories .setShowListFactories=${setShowListFactories}></list-factories>`
+      html`<list-factories
+        .setShowListFactories=${setShowListFactories}
+      ></list-factories>`,
     );
 
     const item = el.shadowRoot?.querySelector('.item') as HTMLElement;

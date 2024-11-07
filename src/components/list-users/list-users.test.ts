@@ -13,19 +13,21 @@ describe('ListUsers Component', () => {
   it('should render a list of user options', async () => {
     const accounts: IAccount[] = [
       {
-          username: 'user1', cookies: 100,
-          is_active: false,
-          factories: []
+        username: 'user1',
+        cookies: 100,
+        is_active: false,
+        factories: [],
       },
       {
-          username: 'user2', cookies: 250,
-          is_active: false,
-          factories: []
+        username: 'user2',
+        cookies: 250,
+        is_active: false,
+        factories: [],
       },
     ];
 
     const el = await fixture<CreateUser>(
-      html`<list-users .accounts=${accounts}></list-users>`
+      html`<list-users .accounts=${accounts}></list-users>`,
     );
 
     const options = el.shadowRoot?.querySelectorAll('option');
@@ -37,20 +39,25 @@ describe('ListUsers Component', () => {
   it('should call selectNewAccount on selecting a new option', async () => {
     const accounts: IAccount[] = [
       {
-          username: 'user1', cookies: 100,
-          is_active: false,
-          factories: []
+        username: 'user1',
+        cookies: 100,
+        is_active: false,
+        factories: [],
       },
       {
-          username: 'user2', cookies: 250,
-          is_active: false,
-          factories: []
+        username: 'user2',
+        cookies: 250,
+        is_active: false,
+        factories: [],
       },
     ];
     const selectNewAccount = sinon.spy();
 
     const el = await fixture<CreateUser>(
-      html`<list-users .accounts=${accounts} .selectNewAccount=${selectNewAccount}></list-users>`
+      html`<list-users
+        .accounts=${accounts}
+        .selectNewAccount=${selectNewAccount}
+      ></list-users>`,
     );
 
     const select = el.shadowRoot?.querySelector('select') as HTMLSelectElement;
