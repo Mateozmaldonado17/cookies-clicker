@@ -153,12 +153,13 @@ export class AppMain extends LitElement {
                     >${factory.name} #${factory.id} Level
                     ${factory.level}/${factory.max_level}</b
                   >
-                  ${factory.level < factory.max_level ?
-                  html` <button
-                    @click=${() => this.upgradeFactoryLevel(factory.id)}
-                  >
-                    Up Level
-                  </button>` : "Congratulations!"}
+                  ${factory.level < factory.max_level
+                    ? html` <button
+                        @click=${() => this.upgradeFactoryLevel(factory.id)}
+                      >
+                        Up Level
+                      </button>`
+                    : 'Congratulations!'}
                 `;
               })}
             </div>

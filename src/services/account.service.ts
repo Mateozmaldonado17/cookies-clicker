@@ -27,18 +27,20 @@ class AccountService extends Dexie {
   async upgradeFactoryLevel(factoryId: number): Promise<void> {
     const selectedAccount = await this.getSelectedAccount();
     if (!selectedAccount) {
-      throw new Error("No active account found");
+      throw new Error('No active account found');
     }
-    const factory = selectedAccount.factories.find(f => f.id === factoryId);
+    const factory = selectedAccount.factories.find((f) => f.id === factoryId);
     if (!factory) {
-      throw new Error(`Factory with ID ${factoryId} not found in the selected account.`);
+      throw new Error(
+        `Factory with ID ${factoryId} not found in the selected account.`,
+      );
     }
     if (factory.level >= factory.max_level) {
-      throw new Error("Factory has already reached its maximum level.");
+      throw new Error('Factory has already reached its maximum level.');
     }
     const upgradeCost = factory.price * factory.level;
     if (selectedAccount.cookies < upgradeCost) {
-      throw new Error("Not enough cookies to upgrade the factory level.");
+      throw new Error('Not enough cookies to upgrade the factory level.');
     }
     factory.level += 1;
     selectedAccount.cookies -= upgradeCost;
