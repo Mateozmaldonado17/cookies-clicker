@@ -7,6 +7,8 @@
     "package.json",
     "src/stories/**",
     "coverage/**",
-    "src/**/*.test.ts"
+    "src/**/*.test.ts",
+    "web-test-runner.config.js",
+    "tsconfig.json"
   ]
 }

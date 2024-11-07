@@ -14,7 +14,7 @@ describe('CookieClicker Component', () => {
       '.cookie-clicker-img',
     ) as HTMLImageElement;
     expect(img).to.exist;
-    expect(img.src).to.include('cookie.png');
+    expect(img.src).to.include('http://localhost:8000/src/assets/cookie.png');
     expect(img.width).to.equal(250);
     expect(img.height).to.equal(250);
     expect(img.draggable).to.be.false;

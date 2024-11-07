@@ -6,7 +6,7 @@ import { IAccountFactories } from '../interfaces/account.interface';
 
 const versionDb = 1;
 
-class AccountService extends Dexie {
+export default class AccountService extends Dexie {
   accounts!: Table<IAccount>;
 
   constructor() {
@@ -155,5 +155,3 @@ class AccountService extends Dexie {
     });
   }
 }
-
-export default AccountService;
