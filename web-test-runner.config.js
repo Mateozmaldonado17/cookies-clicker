@@ -1,9 +1,9 @@
-import { esbuildPlugin } from "@web/dev-server-esbuild";
-import { playwrightLauncher } from "@web/test-runner-playwright";
+import { esbuildPlugin } from '@web/dev-server-esbuild';
+import { playwrightLauncher } from '@web/test-runner-playwright';
 
 export default {
-  rootDir: ".",
-  files: "src/**/*.test.ts",
+  rootDir: '.',
+  files: 'src/**/*.test.ts',
   concurrentBrowsers: 3,
   nodeResolve: true,
   testFramework: {
@@ -15,14 +15,14 @@ export default {
   plugins: [
     esbuildPlugin({
       ts: true,
-      target: "esnext",
+      target: 'esnext',
       decorators: true,
     }),
   ],
   browsers: [
-    playwrightLauncher({ product: "chromium" }),
-    playwrightLauncher({ product: "firefox" }),
-    playwrightLauncher({ product: "webkit" }),
+    playwrightLauncher({ product: 'chromium' }),
+    playwrightLauncher({ product: 'firefox' }),
+    playwrightLauncher({ product: 'webkit' }),
   ],
   testRunnerHtml: (testFramework) => `
     <html lang="en-US">

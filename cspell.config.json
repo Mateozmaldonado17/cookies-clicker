@@ -3,5 +3,10 @@
   "language": "en",
   "files": ["src/**/*.json", "src/**/*.ts", "src/**/*.js"],
   "words": ["docbrok", "csspart", "Dexie"],
-  "ignorePaths": ["package.json", "src/stories/**", "coverage/**", "src/**/*.test.ts"]
+  "ignorePaths": [
+    "package.json",
+    "src/stories/**",
+    "coverage/**",
+    "src/**/*.test.ts"
+  ]
 }
