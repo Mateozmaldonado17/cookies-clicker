@@ -18,8 +18,12 @@ describe('CreateUser Component', () => {
   });
 
   xit('should update username state on input change', async () => {
-    const element: CreateUser = await fixture(html`<cookie-clicker></cookie-clicker>`);
-    const input = element.shadowRoot?.querySelector('input') as HTMLInputElement;
+    const element: CreateUser = await fixture(
+      html`<cookie-clicker></cookie-clicker>`,
+    );
+    const input = element.shadowRoot?.querySelector(
+      'input',
+    ) as HTMLInputElement;
     input.value = 'testuser';
     input.dispatchEvent(new Event('input'));
 
@@ -27,16 +31,22 @@ describe('CreateUser Component', () => {
   });
 
   xit('should call createNewAccount method on button click', async () => {
-    const element: CreateUser = await fixture(html`<cookie-clicker></cookie-clicker>`);
+    const element: CreateUser = await fixture(
+      html`<cookie-clicker></cookie-clicker>`,
+    );
     const createNewAccountSpy = sinon.spy(element, 'onCreateNewAccount');
-    const button = element.shadowRoot?.querySelector('button') as HTMLButtonElement;
+    const button = element.shadowRoot?.querySelector(
+      'button',
+    ) as HTMLButtonElement;
     button.click();
 
     expect(createNewAccountSpy).to.have.been.calledOnce;
   });
 
   xit('should set account and clear username after creating a new account', async () => {
-    const element: CreateUser = await fixture(html`<cookie-clicker></cookie-clicker>`);
+    const element: CreateUser = await fixture(
+      html`<cookie-clicker></cookie-clicker>`,
+    );
     const mockAccount = {
       username: 'testuser',
       cookies: 100,
@@ -44,13 +54,19 @@ describe('CreateUser Component', () => {
       factories: [],
     };
 
-    const accountServiceStub = sinon.stub(AccountService.prototype, 'createNew').resolves(mockAccount);
-    const activateAccountStub = sinon.stub(AccountService.prototype, 'activateAccountByUsername').resolves();
+    const accountServiceStub = sinon
+      .stub(AccountService.prototype, 'createNew')
+      .resolves(mockAccount);
+    const activateAccountStub = sinon
+      .stub(AccountService.prototype, 'activateAccountByUsername')
+      .resolves();
 
     element.username = 'testuser';
     await element.onCreateNewAccount();
 
-    expect(accountServiceStub).to.have.been.calledOnceWith({ username: 'testuser' });
+    expect(accountServiceStub).to.have.been.calledOnceWith({
+      username: 'testuser',
+    });
     expect(activateAccountStub).to.have.been.calledOnceWith('');
     expect(element.account).to.deep.equal(mockAccount);
     expect(element.username).to.equal('');
@@ -60,9 +76,13 @@ describe('CreateUser Component', () => {
   });
 
   xit('should handle errors during account creation', async () => {
-    const element: CreateUser = await fixture(html`<cookie-clicker></cookie-clicker>`);
+    const element: CreateUser = await fixture(
+      html`<cookie-clicker></cookie-clicker>`,
+    );
     const error = new Error('Failed to create account');
-    const accountServiceStub = sinon.stub(AccountService.prototype, 'createNew').rejects(error);
+    const accountServiceStub = sinon
+      .stub(AccountService.prototype, 'createNew')
+      .rejects(error);
 
     const alertStub = sinon.stub(window, 'alert');
     element.username = 'testuser';

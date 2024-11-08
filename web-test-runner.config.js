@@ -7,9 +7,9 @@ export default {
   files: 'src/**/*.test.ts',
   concurrentBrowsers: 3,
   nodeResolve: true,
-  coverage: true, 
+  coverage: true,
   coverageConfig: {
-    include: ['src/**/*.ts'], 
+    include: ['src/**/*.ts'],
     reporter: ['text', 'html'],
     all: true,
     skipFull: false,

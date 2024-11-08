@@ -174,10 +174,8 @@ export default class AppMain extends LitElement {
         </div>
       `}
       ${this.currentAccount
-      ? html`
-            <div
-              style="position: absolute; left: 10px; top: 10px;"
-            >
+        ? html`
+            <div style="position: absolute; left: 10px; top: 10px;">
               <create-user></create-user>
             </div>
             <p class="dancing-font-username"

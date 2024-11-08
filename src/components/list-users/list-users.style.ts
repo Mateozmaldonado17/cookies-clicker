@@ -13,7 +13,7 @@ export default css`
     padding: 8px;
     width: 172px;
     font-size: 24px;
-    border:0px;
+    border: 0px;
     border-radius: 5px;
   }
 `;
