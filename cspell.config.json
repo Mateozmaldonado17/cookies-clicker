@@ -2,6 +2,13 @@
   "version": "0.2",
   "language": "en",
   "files": ["src/**/*.json", "src/**/*.ts", "src/**/*.js"],
-  "words": ["docbrok", "csspart"],
-  "ignorePaths": ["package.json", "src/stories/**"]
+  "words": ["docbrok", "csspart", "Dexie", "Teko"],
+  "ignorePaths": [
+    "package.json",
+    "src/stories/**",
+    "coverage/**",
+    "src/**/*.test.ts",
+    "web-test-runner.config.js",
+    "tsconfig.json"
+  ]
 }

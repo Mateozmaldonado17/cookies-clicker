@@ -1,13 +1,18 @@
 import { esbuildPlugin } from '@web/dev-server-esbuild';
-import { globbySync } from 'globby';
 import { playwrightLauncher } from '@web/test-runner-playwright';
+import { vitePlugin } from '@remcovaes/web-test-runner-vite-plugin';
 
 export default {
   rootDir: '.',
-  files: 'test/**/*.test.ts',
+  files: 'src/**/*.test.ts',
   concurrentBrowsers: 3,
-  nodeResolve: {
-    exportConditions: ['production', 'default'],
+  nodeResolve: true,
+  coverage: true,
+  coverageConfig: {
+    include: ['src/**/*.ts'],
+    reporter: ['text', 'html'],
+    all: true,
+    skipFull: false,
   },
   testFramework: {
     config: {
@@ -16,35 +21,28 @@ export default {
     },
   },
   plugins: [
+    vitePlugin(),
     esbuildPlugin({
       ts: true,
-      target: 'es2020',
+      target: 'esnext',
+      loaders: {
+        '.ts': 'ts',
+      },
     }),
   ],
   browsers: [
     playwrightLauncher({ product: 'chromium' }),
-    playwrightLauncher({ product: 'firefox' }),
+    // FUCK FIREFOX!!!!! playwrightLauncher({ product: 'firefox' }),
     playwrightLauncher({ product: 'webkit' }),
   ],
-  testRunnerHtml: (testFramework) => `
+  testRunnerHtml: (testFramework) => {
+    return `
     <html lang="en-US">
       <head></head>
       <body>
-        <script>
-          window.process = {env: { NODE_ENV: "production" }}
-        </script>
         <script type="module" src="${testFramework}"></script>
       </body>
     </html>
-  `,
-  // Create a named group for every test file to enable running single tests. If a test file is `split-panel.test.ts`
-  // then you can run `npm run test -- --group split-panel` to run only that component's tests.
-  groups: globbySync('src/**/*.test.ts').map((path) => {
-    const groupName = path.match(/^.*\/(?<fileName>.*)\.test\.ts/).groups
-      .fileName;
-    return {
-      name: groupName,
-      files: path,
-    };
-  }),
+  `;
+  },
 };

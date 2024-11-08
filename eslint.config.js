@@ -18,7 +18,7 @@ export default [
       'lit': litPlugin,
     },
     rules: {
-      'no-console': 'warn',
+      'no-console': ['error', { allow: ['warn', 'error'] }],
       'no-unused-vars': 'warn',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       'lit/no-invalid-html': 'error',
