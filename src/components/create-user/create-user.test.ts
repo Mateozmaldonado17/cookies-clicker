@@ -27,17 +27,20 @@ describe('CreateUser Component', () => {
   });
 
   it('should update account and clear username after creating a new account', async () => {
-    const element = await fixture<CreateUser>(html`<create-user></create-user>`);
+    const element = await fixture<CreateUser>(
+      html`<create-user></create-user>`,
+    );
 
     element.username = 'testuser';
-    
+
     await element.updateComplete;
-    const button = element.shadowRoot?.querySelector('button') as HTMLButtonElement;
+    const button = element.shadowRoot?.querySelector(
+      'button',
+    ) as HTMLButtonElement;
     button.click();
 
     await element.updateComplete;
-    expect(element.username).to.equal('testuser'); 
-    expect(element.account).to.not.be.null; 
+    expect(element.username).to.equal('testuser');
+    expect(element.account).to.not.be.null;
   });
-
 });
