@@ -14,7 +14,7 @@ describe('ListFactories Component', () => {
       html`<list-factories></list-factories>`,
     );
     const items = el.shadowRoot?.querySelectorAll('.item');
-    expect(items?.length).to.equal(4);
+    expect(items?.length).to.equal(3);
   });
 
   it('should call setShowListFactories on item click', async () => {

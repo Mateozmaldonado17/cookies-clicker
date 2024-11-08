@@ -36,21 +36,12 @@ export default class ListFactories extends LitElement {
     },
     {
       id: 3,
-      name: 'Trump',
-      image: '/trump.jpg',
+      name: 'Industry',
+      image: '/industry.webp',
       cookies_revenue: 3,
       max_level: 3,
       milliseconds: 100,
       price: 450,
-    },
-    {
-      id: 4,
-      name: 'Kamala',
-      image: '/kamala.png',
-      cookies_revenue: 2,
-      max_level: 3,
-      milliseconds: 100,
-      price: 350,
     },
   ];
 

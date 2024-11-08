@@ -32,8 +32,8 @@ export default class CreateUser extends LitElement {
         username: this.username,
       });
       this.account = getCreatedUser;
+      await accountService.activateAccountByUsername(this.username);
       this.username = '';
-      return await accountService.activateAccountByUsername(this.username);
     } catch (error: any) {
       this.account = null;
       alert(error.message);
