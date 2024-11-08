@@ -20,7 +20,7 @@ export default class CreateUser extends LitElement {
   @state()
   account!: IAccount | null;
 
-  onChangeUsername(event: Event) {
+  public async onChangeUsername(event: Event) {
     const target = event.target as HTMLInputElement;
     this.username = target.value;
   }
@@ -33,6 +33,7 @@ export default class CreateUser extends LitElement {
       });
       this.account = getCreatedUser;
       this.username = '';
+      return await accountService.activateAccountByUsername(this.username);
     } catch (error: any) {
       this.account = null;
       alert(error.message);

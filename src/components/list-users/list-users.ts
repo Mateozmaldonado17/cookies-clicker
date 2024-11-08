@@ -26,20 +26,17 @@ export default class CreateUser extends LitElement {
   selectedUsername!: () => Promise<string | undefined>;
 
   async firstUpdated() {
-    this.resolvedUsername = await this.selectedUsername();
+    // this.resolvedUsername = await this.selectedUsername();
   }
 
   render() {
     return html`<div class="list-users">
       <select @change=${this.selectNewAccount} id="accounts">
         ${this.accounts?.map((account: IAccount) => {
-          const formattedCookies = new Intl.NumberFormat('en', {
-            notation: 'compact',
-          }).format(account.cookies);
           return html`<option
             ?selected=${account.username === this.resolvedUsername}
             value=${account.username}
-            >${account.username} ${formattedCookies} cookies</option
+            >${account.username}</option
           >`;
         })}
       </select>

@@ -15,12 +15,16 @@ import { Subscription } from 'rxjs';
  */
 @customElement('app-main')
 export default class AppMain extends LitElement {
+  static styles: CSSResultGroup = [MainStyle];
   private db: AccountService = new AccountService();
   private intervalId?: number;
   private factorySubscription?: Subscription;
 
   @state()
   allFactoriesByAccount!: IAccountFactories[];
+
+  @state()
+  currentAccount!: IAccount | undefined;
 
   @state()
   currentFactory!: IFactory;
@@ -59,13 +63,14 @@ export default class AppMain extends LitElement {
   protected firstUpdated(): void {
     this.db.watchAccounts().subscribe((data) => {
       this.accounts = data;
+      this.getSelectedAccount();
     });
     this.detectIfThereIsNotAccounts();
-    this.getSelectedAccount();
   }
 
   private async getSelectedAccount(): Promise<string | undefined> {
     const account = await this.db.getSelectedAccount();
+    this.currentAccount = account;
     return account?.username;
   }
 
@@ -80,6 +85,8 @@ export default class AppMain extends LitElement {
   }
 
   private async handleClick(): Promise<void> {
+    const audio = new Audio('/public/bite.mp3');
+    audio.play();
     await this.db.addNewCookieToSelectedAccount();
   }
 
@@ -108,7 +115,7 @@ export default class AppMain extends LitElement {
     super.connectedCallback();
     this.intervalId = window.setInterval(() => {
       this.calculateNewCookies();
-    }, 100);
+    }, 1000);
   }
 
   disconnectedCallback() {
@@ -166,23 +173,59 @@ export default class AppMain extends LitElement {
           </div>
         </div>
       `}
-      <create-user></create-user>
-      <list-users
-        .accounts=${this.accounts}
-        .selectNewAccount=${(event: Event) => this.selectNewAccount(event)}
-        .selectedUsername=${() => this.getSelectedAccount()}
-      ></list-users>
-      <cookie-clicker .handleClick=${() => this.handleClick()}></cookie-clicker>
-      <div class="factories-bottom">
-        <list-factories
-          .setShowListFactories=${(factory: IFactory) =>
-            this.setShowListFactories(factory, true)}
-        ></list-factories>
-      </div>
+      ${this.currentAccount
+      ? html`
+            <div
+              style="position: absolute; left: 10px; top: 10px;"
+            >
+              <create-user></create-user>
+            </div>
+            <p class="dancing-font-username"
+              >${this.currentAccount?.username}</p
+            >
+            <div
+              style="position: absolute; right: 0px; top: 0px; margin: 10px;"
+            >
+              <list-users
+                .accounts=${this.accounts}
+                .selectNewAccount=${(event: Event) =>
+                  this.selectNewAccount(event)}
+                .selectedUsername=${() => this.getSelectedAccount()}
+              ></list-users>
+            </div>
+
+            <cookie-clicker
+              .handleClick=${() => this.handleClick()}
+            ></cookie-clicker>
+
+            <div class="total-cookies">
+              ${new Intl.NumberFormat('en', { notation: 'compact' }).format(
+                this.currentAccount?.cookies as number,
+              )}
+              <span class="only-dancing-font cookies-value">Cookies</span>
+            </div>
+
+            <div class="factories-bottom">
+              <list-factories
+                .setShowListFactories=${(factory: IFactory) =>
+                  this.setShowListFactories(factory, true)}
+              ></list-factories>
+            </div>
+          `
+        : html`
+            <div
+              style="display: grid; place-content: center; width: 100%; height: 90vh;"
+            >
+              <create-user></create-user>
+            </div>
+          `}
+
+      <!-- <audio id="background-audio" autoplay loop>
+        <source src="/public/background.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio> -->
     `;
   }
-
-  static styles: CSSResultGroup = [MainStyle];
 }
 declare global {
   // eslint-disable-next-line no-unused-vars

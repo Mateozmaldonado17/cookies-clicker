@@ -14,9 +14,9 @@ describe('CookieClicker Component', () => {
       '.cookie-clicker-img',
     ) as HTMLImageElement;
     expect(img).to.exist;
-    expect(img.src).to.include('http://localhost:8000/src/assets/cookie.png');
-    expect(img.width).to.equal(250);
-    expect(img.height).to.equal(250);
+    expect(img.src).to.include('http://localhost:8000/public/cookie.png');
+    expect(img.width).to.equal(150);
+    expect(img.height).to.equal(150);
     expect(img.draggable).to.be.false;
   });
 
@@ -34,7 +34,7 @@ describe('CookieClicker Component', () => {
     expect(handleClick.calledOnce).to.be.true;
   });
 
-  it('should have the correct styles applied', async () => {
+  it('should have the correct styles applieddddd', async () => {
     const el = await fixture(html`<cookie-clicker></cookie-clicker>`);
     const computedStyle = getComputedStyle(
       el.shadowRoot?.querySelector('.cookie-clicker') as HTMLElement,

@@ -1,7 +1,6 @@
 import { CSSResultGroup, LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import CookieClickerStyle from './cookie-clicker.style';
-import cookie from '../../assets/cookie.png';
 
 /**
  * An example element.
@@ -22,9 +21,9 @@ export default class CookieClicker extends LitElement {
         class="cookie-clicker-img"
         @click=${this.handleClick}
         draggable="false"
-        src=${cookie}
-        width="250"
-        height="250"
+        src="/public/cookie.png"
+        width="150"
+        height="150"
       />
     </div>`;
   }

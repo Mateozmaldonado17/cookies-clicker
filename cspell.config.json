@@ -2,7 +2,7 @@
   "version": "0.2",
   "language": "en",
   "files": ["src/**/*.json", "src/**/*.ts", "src/**/*.js"],
-  "words": ["docbrok", "csspart", "Dexie"],
+  "words": ["docbrok", "csspart", "Dexie", "Teko"],
   "ignorePaths": [
     "package.json",
     "src/stories/**",
