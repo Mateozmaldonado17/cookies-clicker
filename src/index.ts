@@ -68,33 +68,33 @@ export default class AppMain extends LitElement {
     this.detectIfThereIsNotAccounts();
   }
 
-  private async getSelectedAccount(): Promise<string | undefined> {
+   async getSelectedAccount(): Promise<string | undefined> {
     const account = await this.db.getSelectedAccount();
     this.currentAccount = account;
     return account?.username;
   }
 
-  private async activateAccount(username: string) {
+  async activateAccount(username: string) {
     return await this.db.activateAccountByUsername(username);
   }
 
-  private async selectNewAccount(event: Event) {
+   async selectNewAccount(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     const username = selectElement.value;
     return await this.activateAccount(username);
   }
 
-  private async handleClick(): Promise<void> {
+  async handleClick(): Promise<void> {
     const audio = new Audio('/public/bite.mp3');
     audio.play();
     await this.db.addNewCookieToSelectedAccount();
   }
 
-  private async onBuyFactory(): Promise<void> {
+   async onBuyFactory(): Promise<void> {
     this.db.addSelectedFactoryToCurrentAccount(this.currentFactory);
   }
 
-  private async calculateNewCookies() {
+  async calculateNewCookies() {
     const currentDate = new Date().getTime();
     const getAllAccounts = await this.db.getAllAccounts();
 
@@ -218,10 +218,10 @@ export default class AppMain extends LitElement {
             </div>
           `}
 
-      <!-- <audio id="background-audio" autoplay loop>
+      <audio id="background-audio" autoplay loop>
         <source src="/public/background.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
-      </audio> -->
+      </audio>
     `;
   }
 }

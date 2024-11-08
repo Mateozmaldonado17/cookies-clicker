@@ -26,7 +26,7 @@ export default class CreateUser extends LitElement {
   selectedUsername!: () => Promise<string | undefined>;
 
   async firstUpdated() {
-    this.resolvedUsername = await this.selectedUsername();
+    //this.resolvedUsername = await this.selectedUsername();
   }
 
   render() {
