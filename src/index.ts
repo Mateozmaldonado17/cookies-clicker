@@ -68,7 +68,7 @@ export default class AppMain extends LitElement {
     this.detectIfThereIsNotAccounts();
   }
 
-   async getSelectedAccount(): Promise<string | undefined> {
+  async getSelectedAccount(): Promise<string | undefined> {
     const account = await this.db.getSelectedAccount();
     this.currentAccount = account;
     return account?.username;
@@ -78,7 +78,7 @@ export default class AppMain extends LitElement {
     return await this.db.activateAccountByUsername(username);
   }
 
-   async selectNewAccount(event: Event) {
+  async selectNewAccount(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     const username = selectElement.value;
     return await this.activateAccount(username);
@@ -90,7 +90,7 @@ export default class AppMain extends LitElement {
     await this.db.addNewCookieToSelectedAccount();
   }
 
-   async onBuyFactory(): Promise<void> {
+  async onBuyFactory(): Promise<void> {
     this.db.addSelectedFactoryToCurrentAccount(this.currentFactory);
   }
 
