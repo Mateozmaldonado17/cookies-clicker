@@ -3,12 +3,15 @@ import { playwrightLauncher } from '@web/test-runner-playwright';
 import { vitePlugin } from '@remcovaes/web-test-runner-vite-plugin';
 
 export default {
-  rootDir: '.',
-  files: 'src/**/*.test.ts',
+  files: './src/**/*.{test,spec}.ts',
   concurrentBrowsers: 3,
   nodeResolve: true,
+  coverage: true,
   coverageConfig: {
-    exclude: ['**/node_modules/**'],
+    include: ['src/**/*.ts'], // Incluir solo archivos en src
+    reporter: ['text', 'html'],
+    all: true, // Incluir todos los archivos, aunque no se importen
+    skipFull: false, // No omitir archivos al 100%
   },
   testFramework: {
     config: {
@@ -31,14 +34,4 @@ export default {
     playwrightLauncher({ product: 'firefox' }),
     playwrightLauncher({ product: 'webkit' }),
   ],
-  testRunnerHtml: (testFramework) => {
-    return `
-    <html lang="en-US">
-      <head></head>
-      <body>
-        <script type="module" src="${testFramework}"></script>
-      </body>
-    </html>
-  `;
-  },
 };
