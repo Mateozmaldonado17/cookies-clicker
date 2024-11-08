@@ -1,6 +1,6 @@
 import { fixture, html, expect } from '@open-wc/testing';
 import sinon from 'sinon';
-import  './create-user';
+import './create-user';
 import CreateUser from './create-user';
 describe('CreateUser Component', () => {
   it('should be defined', async () => {
@@ -17,9 +17,7 @@ describe('CreateUser Component', () => {
   });
 
   it('should update username state on input change', async () => {
-    const element: any = await fixture(
-      html`<create-user></create-user>`,
-    );
+    const element: any = await fixture(html`<create-user></create-user>`);
     const input = element.shadowRoot?.querySelector(
       'input',
     ) as HTMLInputElement;
@@ -31,14 +29,16 @@ describe('CreateUser Component', () => {
 
   xit('should call createNewAccount method on button click', async () => {
     const element = await fixture<CreateUser>(
-      html`<create-user></create-user>`
+      html`<create-user></create-user>`,
     );
-    const createNewAccountStub = sinon.stub(element, 'onCreateNewAccount').resolves();
-    await element.updateComplete; 
+    const createNewAccountStub = sinon
+      .stub(element, 'onCreateNewAccount')
+      .resolves();
+    await element.updateComplete;
     const button = element.shadowRoot?.querySelector(
-      'button'
+      'button',
     ) as HTMLButtonElement;
-    await button.click(); 
+    await button.click();
     expect(createNewAccountStub).to.have.been.calledOnce;
     createNewAccountStub.restore();
   });
