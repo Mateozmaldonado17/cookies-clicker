@@ -1,6 +1,6 @@
 # Cookies Clicker
 
-Bienvenido a **Cookies Clicker** – un proyecto desarrollado con `Vite`, `LitElement`, y tecnologías adicionales como `Storybook` para componentes UI y `Web Test Runner` para pruebas.
+Bienvenido a **Cookies Clicker** – un proyecto desarrollado con `Vite`, `LitElement`, y `Web Test Runner` para pruebas.
 
 Este proyecto tiene como objetivo crear un divertido "clicker" de cookies donde los usuarios pueden crear cuentas, actualizar sus fábricas, y acumular cookies a lo largo del tiempo.
 
