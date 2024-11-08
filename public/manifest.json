@@ -1,0 +1,20 @@
+{
+  "name": "CookiesClicker",
+  "short_name": "Cookies",
+  "description": "Great Cookie Game",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f5a623",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/public/cookie-icon.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    }
+  ],
+  "lang": "en",
+  "dir": "ltr"
+}
