@@ -22,11 +22,12 @@ Este proyecto tiene como objetivo crear un divertido "clicker" de cookies donde 
    cd cookies-clicker
 
 2. Instala las dependencias:
-
-   ```npm install
+   ```bash
+   npm install
+   
 3. Uso
-
-  ```npm run dev
+   ```bash
+     npm run dev
 
 Scripts Disponibles
 Aquí tienes un resumen de los scripts incluidos en package.json:
